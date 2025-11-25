@@ -15,33 +15,41 @@ import {
 import { useAuth } from '../App';
 import { Role } from '../types';
 
+interface NavItemProps {
+  to: string;
+  icon: any;
+  label: string;
+  onClick: () => void;
+}
+
+const NavItem: React.FC<NavItemProps> = ({ to, icon: Icon, label, onClick }) => {
+  const location = useLocation();
+  const isActive = location.pathname === to;
+  
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors mb-1 ${
+        isActive 
+          ? 'bg-blue-600 text-white shadow-md' 
+          : 'text-slate-600 hover:bg-slate-100 hover:text-blue-600'
+      }`}
+    >
+      <Icon size={20} />
+      <span className="font-medium">{label}</span>
+    </Link>
+  );
+};
+
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, logout } = useAuth();
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const location = useLocation();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
     navigate('/');
-  };
-
-  const NavItem = ({ to, icon: Icon, label }: { to: string, icon: any, label: string }) => {
-    const isActive = location.pathname === to;
-    return (
-      <Link
-        to={to}
-        onClick={() => setSidebarOpen(false)}
-        className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors mb-1 ${
-          isActive 
-            ? 'bg-blue-600 text-white shadow-md' 
-            : 'text-slate-600 hover:bg-slate-100 hover:text-blue-600'
-        }`}
-      >
-        <Icon size={20} />
-        <span className="font-medium">{label}</span>
-      </Link>
-    );
   };
 
   const getNavItems = () => {
@@ -97,7 +105,13 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
           <div className="flex flex-col gap-2 flex-grow">
             {getNavItems().map((item) => (
-              <NavItem key={item.to} to={item.to} icon={item.icon} label={item.label} />
+              <NavItem 
+                key={item.to} 
+                to={item.to} 
+                icon={item.icon} 
+                label={item.label} 
+                onClick={() => setSidebarOpen(false)}
+              />
             ))}
           </div>
 
