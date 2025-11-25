@@ -24,7 +24,7 @@ export const SplashScreen = () => {
       
       <div className="pb-12 text-center space-y-1">
         <p className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Developed by</p>
-        <p className="text-slate-800 font-bold text-lg">Shadrack & Hakeem</p>
+        <p className="text-slate-800 font-bold text-lg">Shadrack</p>
         <p className="text-slate-400 text-xs">© 2025 All Rights Reserved</p>
       </div>
     </div>
