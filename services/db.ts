@@ -9,14 +9,14 @@ interface DBState {
   attendance: AttendanceRecord[];
 }
 
-// Initial Mock Data Generation
+// Initial Data Generation for System
 const generateInitialData = (): DBState => {
   const students: Student[] = [];
   const results: ExamResult[] = [];
   const attendance: AttendanceRecord[] = [];
 
   CLASSES.forEach(cls => {
-    // Generate 15 students per class for demo
+    // Generate initial student records per class
     for (let i = 1; i <= 15; i++) {
       const sId = `${cls.id}-s${i}`;
       students.push({
@@ -97,7 +97,7 @@ export const getClassAverage = (classId: string, term: string, subjectId?: strin
 };
 
 export const mockLogin = (role: Role): User => {
-  // Simple mock login based on role selection
+  // Mock login authentication provider
   switch (role) {
     case Role.ADMIN:
       return { id: 'admin1', name: 'Principal Jane', role: Role.ADMIN, email: 'admin@school.ke' };

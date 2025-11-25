@@ -7,7 +7,7 @@ import { Button, Badge } from '../components/Widgets';
 
 export const TeacherDashboard = () => {
   const navigate = useNavigate();
-  // Assume logged in teacher manages North stream classes for demo
+  // Filter for assigned North stream classes
   const myClasses = CLASSES.filter(c => c.stream === 'North');
 
   return (
