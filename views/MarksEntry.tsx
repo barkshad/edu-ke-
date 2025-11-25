@@ -51,7 +51,8 @@ export const MarksEntry = () => {
           subjectId: selectedSubject,
           term: 'Term 1',
           score: marks[s.id],
-          grade: calculateGrade(marks[s.id])
+          grade: calculateGrade(marks[s.id]),
+          date: new Date().toISOString()
         };
         saveResult(result);
       }

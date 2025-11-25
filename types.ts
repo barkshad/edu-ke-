@@ -17,10 +17,16 @@ export interface Student {
   id: string;
   name: string;
   admissionNumber: string;
-  classId: string; // e.g., "form-1-a"
-  stream: string;  // e.g., "North"
+  classId: string;
+  stream: string;
+  gender: 'M' | 'F';
+  parentName: string;
   parentPhone: string;
-  attendanceRate: number; // 0-100
+  parentEmail?: string;
+  attendanceRate: number;
+  feesPaid: number;
+  feesTotal: number;
+  dob?: string;
 }
 
 export interface Subject {
@@ -34,16 +40,17 @@ export interface ExamResult {
   id: string;
   studentId: string;
   subjectId: string;
-  term: string; // "Term 1 2024"
+  term: string;
   score: number;
   grade: string;
+  date: string;
 }
 
 export interface ClassRoom {
   id: string;
-  name: string; // "Form 1"
-  stream: string; // "North"
-  teacherId: string; // Class teacher
+  name: string;
+  stream: string;
+  teacherId: string;
 }
 
 export interface AttendanceRecord {
@@ -53,9 +60,21 @@ export interface AttendanceRecord {
   status: 'Present' | 'Absent' | 'Late';
 }
 
-export interface DashboardStats {
-  totalStudents: number;
-  averagePerformance: number;
-  attendanceRate: number;
-  topClass: string;
+export interface Notification {
+  id: string;
+  userId: string;
+  title: string;
+  message: string;
+  type: 'info' | 'warning' | 'success' | 'alert';
+  date: string;
+  read: boolean;
+}
+
+export interface FeeRecord {
+  id: string;
+  studentId: string;
+  amount: number;
+  type: 'Tuition' | 'Transport' | 'Lunch';
+  date: string;
+  status: 'Paid' | 'Pending';
 }
