@@ -14,7 +14,7 @@ const getAI = () => {
 export const generateStudentInsights = async (student: Student, results: ExamResult[]) => {
   const ai = getAI();
   if (!ai) {
-    return "AI Insights require an API Key. (Demo mode: Student is performing well in Sciences but needs improvement in Languages.)";
+    return "AI Insights require a configured API Key. Please contact the system administrator to enable this feature.";
   }
 
   // Format data for the prompt

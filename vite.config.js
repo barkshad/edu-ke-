@@ -11,6 +11,9 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       outDir: 'dist',
+      sourcemap: false, // Disable sourcemaps for production security
+      emptyOutDir: true,
+      minify: 'esbuild', // Efficient minification
     }
   };
 });
